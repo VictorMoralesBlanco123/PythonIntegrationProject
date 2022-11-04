@@ -142,8 +142,8 @@ def divide_function(type_of_answer):
     # This line saves the first number in the list
     total = 1
     # This line initializes answer so that it may be referenced outside the if statement.
-    for item in list_of_numbers:
-        total = total * item
+    for item in range(list_of_numbers):
+        total = total * list_of_numbers[item]
     denominator = total / list_of_numbers[0]
     total = list_of_numbers[0] / denominator
     remainder = list_of_numbers[0] % denominator
