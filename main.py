@@ -165,7 +165,7 @@ def exponent_function():
 
 # This function directs what functions get called depending on the user's inputs
 def operation_decision():
-    operations_list = ["add", "subtract", "multiply", "divide", "exponent"]
+    operations_list = ["add", "+", "subtract", "multiply", "divide", "exponent"]
     print("Please enter the kind of calculation you wish to do." + " Type add, subtract, multiply, divide, or exponent",
           end=". (No other input will be accepted)\n")
     mathematical_operation = input()
@@ -175,7 +175,7 @@ def operation_decision():
         operation_decision()
     else:
         # This nested if statement decides what function is called.
-        if mathematical_operation == "add":
+        if mathematical_operation == "add" or mathematical_operation == "+":
             addition_function()
         elif mathematical_operation == "subtract":
             subtraction_function()
@@ -205,5 +205,3 @@ def main():
 
 # This line calls the startup() function
 main()
-
-# Need Or and range
