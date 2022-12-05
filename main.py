@@ -121,9 +121,16 @@ def multipy_function():
     operation_decision()
 
 
-# This function divides the numbers from each other in the order they were put into the list
 def divide_function(type_of_answer):
-    # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
+    """
+        This function calculates a division equation based on user inputs.
+
+    :list_of_numbers: This is a list of the user inputs.
+    :total: This is the result of the calculation.
+    :denominator: This stores the denominator calculated by multiplying all the numbers the user input except the first.
+    :remainder: This stores the remainder using the modulus operator.
+    :answer: This is a string that has the entire equation so that it can be displaced.
+    """
     list_of_numbers = equation_prompt("divide")
     # This line saves the first number in the list
     total = 1
@@ -141,6 +148,13 @@ def divide_function(type_of_answer):
 
 
 def exponent_function():
+    """
+        This function calculates an exponential equation
+
+    :base_number: This is the base number the user inputs.
+    :exponent: This is the exponent the user inputs.
+    :total: This stores the total after the equation has been calculated.
+    """
     print("Please enter the base number:")
     base_number = float(input())
     print("Please enter the exponent:")
@@ -154,9 +168,9 @@ def operation_decision():
     """
         This function serves determines which functions get called depending on user input.
 
-    :operations_list: This is a list of acceptable
-    :mathematical_mathematical_operation:
-    :user_choice:
+    :operations_list: This is a list of acceptable inputs.
+    :mathematical_operation: This is the user's initial input.
+    :division_user_choice: This is a secondary input when the user selects division.
     """
     operations_list = ["add", "subtract", "multiply", "divide", "exponent"]
     print("Please enter the kind of calculation you wish to do." + " Type add, subtract, multiply, divide, or exponent",
@@ -167,7 +181,6 @@ def operation_decision():
         print("Sorry, I cannot do this operation. Please try again.")
         operation_decision()
     else:
-        # This nested if statement decides what function is called.
         if mathematical_operation == "add":
             addition_function()
         elif mathematical_operation == "subtract":
@@ -175,12 +188,12 @@ def operation_decision():
         elif mathematical_operation == "multiply":
             multipy_function()
         elif mathematical_operation == "divide":
-            user_choice = ""
-            while user_choice != "decimal" and user_choice != "fraction":
+            division_user_choice = ""
+            while division_user_choice != "decimal" and division_user_choice != "fraction":
                 print("Do you wish to have a decimal answer? Type decimal.")
                 print("Do you wish to have a precise fraction answer? Type fraction.")
-                user_choice = input()
-            if user_choice == "fraction":
+                division_user_choice = input()
+            if division_user_choice == "fraction":
                 divide_function("fraction")
             else:
                 divide_function("decimal")
@@ -188,8 +201,11 @@ def operation_decision():
             exponent_function()
 
 
-# This function is called as soon as the program loads
 def main():
+    """
+
+    :rtype: object
+    """
     print("Hello! " * 2, "Welcome to my calculator program!", sep="\n")
     print("I can add, subtract, multiply, divide, and I can even do exponents!")
     # Redirects to function operation_decision()
