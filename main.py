@@ -7,6 +7,7 @@ import math
 
 
 def associated_property_equations_prompt(list_of_numbers, total, sign):
+
     equation_string = ""
     i = 0
     while i < len(list_of_numbers):
