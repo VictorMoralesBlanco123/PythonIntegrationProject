@@ -6,8 +6,7 @@
 import math
 
 
-def associated_property_equations_prompt(list_of_numbers, total, sign):
-
+def answer_associated_property_equations_prompt(list_of_numbers, total, sign):
     equation_string = ""
     i = 0
     while i < len(list_of_numbers):
@@ -98,7 +97,7 @@ def addition_function():
         total += item
     # This line sends the list of numbers and the total to a function in order to create a string displaying
     # the equation for the user. That function returns the equation as a string that is stored in answer.
-    answer = associated_property_equations_prompt(list_of_numbers, total, " - ")
+    answer = answer_associated_property_equations_prompt(list_of_numbers, total, " - ")
     print(answer)
     # This line sends the user back to the beginning, so they can do another calculation.
     operation_decision()
@@ -116,7 +115,7 @@ def multipy_function():
         total = total * item
     # This line sends the list of numbers and the total to a function in order to create a string displaying
     # the equation for the user. That function returns the equation as a string that is stored in answer.
-    answer = associated_property_equations_prompt(list_of_numbers, total, " * ")
+    answer = answer_associated_property_equations_prompt(list_of_numbers, total, " * ")
     print(answer)
     # This line sends the user back to the beginning, so they can do another calculation.
     operation_decision()
@@ -152,7 +151,14 @@ def exponent_function():
 
 # This function directs what functions get called depending on the user's inputs
 def operation_decision():
-    operations_list = ["add", "+", "subtract", "multiply", "divide", "exponent"]
+    """
+        This function serves determines which functions get called depending on user input.
+
+    :operations_list: This is a list of acceptable
+    :mathematical_mathematical_operation:
+    :user_choice:
+    """
+    operations_list = ["add", "subtract", "multiply", "divide", "exponent"]
     print("Please enter the kind of calculation you wish to do." + " Type add, subtract, multiply, divide, or exponent",
           end=". (No other input will be accepted)\n")
     mathematical_operation = input()
@@ -162,7 +168,7 @@ def operation_decision():
         operation_decision()
     else:
         # This nested if statement decides what function is called.
-        if mathematical_operation == "add" or mathematical_operation == "+":
+        if mathematical_operation == "add":
             addition_function()
         elif mathematical_operation == "subtract":
             subtraction_function()
