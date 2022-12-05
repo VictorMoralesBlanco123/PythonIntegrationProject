@@ -6,6 +6,18 @@
 import math
 
 
+def associated_property_equations_prompt(list_of_numbers, total, sign):
+    equation_string = ""
+    i = 0
+    while i < len(list_of_numbers):
+        if i == len(list_of_numbers) - 1:
+            equation_string += str(list_of_numbers[i]) + " = " + str(total)
+        else:
+            equation_string += str(list_of_numbers[i]) + sign
+        i += 1
+    return equation_string
+
+
 # This function builds the subtraction equation for visual purposes
 def answer_subtraction_prompt(list_of_numbers, total):
     equation_string = ""
@@ -15,32 +27,6 @@ def answer_subtraction_prompt(list_of_numbers, total):
             equation_string += str(list_of_numbers[i]) + " = " + str(total)
         else:
             equation_string += str(list_of_numbers[i]) + " - "
-        i += 1
-    return equation_string
-
-
-# This function builds the addition equation for visual purposes
-def answer_addition_prompt(list_of_numbers, total):
-    equation_string = ""
-    i = 0
-    while i < len(list_of_numbers):
-        if i == len(list_of_numbers) - 1:
-            equation_string += str(list_of_numbers[i]) + " = " + str(total)
-        else:
-            equation_string += str(list_of_numbers[i]) + " + "
-        i += 1
-    return equation_string
-
-
-# This function builds the multiplication equation for visual purposes
-def answer_multiplication_prompt(list_of_numbers, total):
-    equation_string = ""
-    i = 0
-    while i < len(list_of_numbers):
-        if i == len(list_of_numbers) - 1:
-            equation_string += str(list_of_numbers[i]) + " = " + str(total)
-        else:
-            equation_string += str(list_of_numbers[i]) + " * "
         i += 1
     return equation_string
 
@@ -111,7 +97,7 @@ def addition_function():
         total += item
     # This line sends the list of numbers and the total to a function in order to create a string displaying
     # the equation for the user. That function returns the equation as a string that is stored in answer.
-    answer = answer_addition_prompt(list_of_numbers, total)
+    answer = associated_property_equations_prompt(list_of_numbers, total, " - ")
     print(answer)
     # This line sends the user back to the beginning, so they can do another calculation.
     operation_decision()
@@ -129,7 +115,7 @@ def multipy_function():
         total = total * item
     # This line sends the list of numbers and the total to a function in order to create a string displaying
     # the equation for the user. That function returns the equation as a string that is stored in answer.
-    answer = answer_multiplication_prompt(list_of_numbers, total)
+    answer = associated_property_equations_prompt(list_of_numbers, total, " * ")
     print(answer)
     # This line sends the user back to the beginning, so they can do another calculation.
     operation_decision()
