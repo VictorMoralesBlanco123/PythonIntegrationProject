@@ -3,10 +3,18 @@
 # This is a basic calculator to demonstrate my understanding of the Python language.
 # Sources https://www.w3schools.com/python/
 
+
 import math
 
 
 def answer_associated_property_equations_prompt(list_of_numbers, total, sign):
+    """
+
+    :param list_of_numbers:
+    :param total:
+    :param sign:
+    :return:
+    """
     equation_string = ""
     i = 0
     while i < len(list_of_numbers):
@@ -34,6 +42,15 @@ def answer_subtraction_prompt(list_of_numbers, total):
 # This function builds the division equation for visual purposes
 def answer_division_prompt(list_of_numbers, total, remainder, denominator,
                            type_of_answer):
+    """
+
+    :param list_of_numbers:
+    :param total:
+    :param remainder:
+    :param denominator:
+    :param type_of_answer:
+    :return:
+    """
     equation_string = ""
     i = 0
     while i < len(list_of_numbers):
@@ -53,6 +70,11 @@ def answer_division_prompt(list_of_numbers, total, remainder, denominator,
 
 # This function gets vital information for the computation
 def equation_prompt(operation_as_word):
+    """
+
+    :param operation_as_word:
+    :return:
+    """
     number_of_items = 0
     # This loop serves as validation to make sure the user inputs a number greater than 1
     while number_of_items < 2:
@@ -74,6 +96,9 @@ def equation_prompt(operation_as_word):
 
 # This function subtracts the numbers from each other in the order they were put into the list
 def subtraction_function():
+    """
+
+    """
     # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
     list_of_numbers = equation_prompt("subtract")
     # This line saves the first number in the list
@@ -94,6 +119,9 @@ def subtraction_function():
 
 # This function adds all the numbers in the list
 def addition_function():
+    """
+
+    """
     # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
     list_of_numbers = equation_prompt("add")
     # This line initializes the variable total.
@@ -137,11 +165,15 @@ def divide_function(type_of_answer):
     """
         This function calculates a division equation based on user inputs.
 
+    :param type_of_answer: This variable is used to hold
+
     :list_of_numbers: This is a list of the user inputs.
     :total: This is the result of the calculation.
-    :denominator: This stores the denominator calculated by multiplying all the numbers the user input except the first.
+    :denominator: This stores the denominator calculated by multiplying all the
+        numbers the user input except the first.
     :remainder: This stores the remainder using the modulus operator.
-    :answer: This is a string that has the entire equation so that it can be displaced.
+    :answer: This is a string that has the entire equation so that it can be
+        displaced.
     """
     list_of_numbers = equation_prompt("divide")
     # This line saves the first number in the list
