@@ -1,14 +1,20 @@
-# Integration Project
-__author__ = "Victor Morales Blanco"
-# This is a basic calculator to demonstrate my understanding of the Python language.
-# Sources https://www.w3schools.com/python/
+"""
+    Integration Project
 
+    This is a basic calculator to demonstrate my understanding of the Python
+    language.
+
+    Sources https://www.w3schools.com/python/
+"""
+
+__author__ = "Victor Morales Blanco"
 
 import math
 
 
-def answer_associated_property_equations_prompt(list_of_numbers, total, sign):
+def associative_equations_string(list_of_numbers, total, sign):
     """
+        This functions creates
 
     :param list_of_numbers:
     :param total:
@@ -98,72 +104,61 @@ def equation_prompt(operation_as_word):
 # put into the list
 def subtraction_function():
     """
+         This function calculates a subtraction equation based on user inputs.
 
-    """
-    # This line sends a parameter for the purpose of user interaction and
-    # returns a list of numbers.
+     :list_of_numbers: This list holds the numbers the user input for
+         multiplication.
+     :total: This is the result of the calculation.
+     :iteration_counter:
+     :answer: This holds the equation string to display.
+     """
     list_of_numbers = equation_prompt("subtract")
-    # This line saves the first number in the list
     total = list_of_numbers[0]
     iteration_counter = 1
-    # This loop subtracts the number stored in the list in the proper order
     while iteration_counter < len(list_of_numbers):
         total -= list_of_numbers[iteration_counter]
         iteration_counter += 1
-    # This line sends the list of numbers and the total to a function in order
-    # to create a string displaying
-    # the equation for the user. That function returns the equation as a string
-    # that is stored in answer.
     answer = answer_subtraction_prompt(list_of_numbers, total)
     print(answer)
-    # This line sends the user back to the beginning, so they can do another calculation.
     operation_decision()
 
 
 # This function adds all the numbers in the list
 def addition_function():
     """
+        This function calculates an addition equation based on user inputs.
 
-
-    :return:
+    :list_of_numbers: This list holds the numbers the user input for
+        multiplication.
+    :total: This is the result of the calculation.
+    :answer: This holds the equation string to display.
     """
-    # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
     list_of_numbers = equation_prompt("add")
-    # This line initializes the variable total.
     total = 0.0
-    # This loop adds all the numbers in the list.
     for item in list_of_numbers:
-        # This line is the same as saying: total = total + list_of_numbers[iteration_counter]
         total += item
-    # This line sends the list of numbers and the total to a function in order to create a string displaying
-    # the equation for the user. That function returns the equation as a string that is stored in answer.
-    answer = answer_associated_property_equations_prompt(list_of_numbers,
-                                                         total, " - ")
+    answer = associative_equations_string(list_of_numbers, total, " - ")
     print(answer)
-    # This line sends the user back to the beginning, so they can do another calculation.
     operation_decision()
 
 
-# This function multiplies all the numbers in the list
 def multipy_function():
     """
+        This function calculates a division equation based on user inputs.
 
-    :return:
+    :list_of_numbers: This list holds the numbers the user input for
+        multiplication.
+    :total: This is the result of the calculation.
+    :answer: This holds the equation string to display.
     """
-    # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
+
     list_of_numbers = equation_prompt("multiply")
-    # This line initializes total so that it can be referenced outside the loop.
-    # Set = to 1 so as not to affect the total.
     total = 1
     # This loop multiplies all the numbers in the list.
     for item in list_of_numbers:
         total = total * item
-    # This line sends the list of numbers and the total to a function in order to create a string displaying
-    # the equation for the user. That function returns the equation as a string that is stored in answer.
-    answer = answer_associated_property_equations_prompt(list_of_numbers,
-                                                         total, " * ")
+    answer = associative_equations_string(list_of_numbers, total, " * ")
     print(answer)
-    # This line sends the user back to the beginning, so they can do another calculation.
     operation_decision()
 
 
@@ -171,7 +166,8 @@ def divide_function(type_of_answer):
     """
         This function calculates a division equation based on user inputs.
 
-    :param type_of_answer: This variable is used to hold
+    :param type_of_answer: This variable is used to hold the secondary user
+        choice.
 
     :list_of_numbers: This is a list of the user inputs.
     :total: This is the result of the calculation.
@@ -180,6 +176,8 @@ def divide_function(type_of_answer):
     :remainder: This stores the remainder using the modulus operator.
     :answer: This is a string that has the entire equation so that it can be
         displaced.
+    :line 198: This line sends the list of numbers and the total to a function
+        in order to create a string displaying the equation for the user.
     """
     list_of_numbers = equation_prompt("divide")
     total = 1
@@ -190,9 +188,6 @@ def divide_function(type_of_answer):
     denominator = total / list_of_numbers[0]
     total = list_of_numbers[0] / denominator
     remainder = list_of_numbers[0] % denominator
-    # This line sends the list of numbers and the total to a function in order
-    # to create a string displaying the equation for the user. That function
-    # returns the equation as a string that is stored in answer.
     answer = answer_division_prompt(list_of_numbers, total, remainder,
                                     denominator, type_of_answer)
     print(answer)
@@ -201,7 +196,7 @@ def divide_function(type_of_answer):
 
 def exponent_function():
     """
-        This function calculates an exponential equation
+        This function calculates an exponential equation based on user input.
 
     :base_number: This is the base number the user inputs.
     :exponent: This is the exponent the user inputs.
@@ -225,37 +220,36 @@ def operation_decision():
     :division_choice: This is a secondary input when the user selects
         division.
     """
-    operations_list = ["add", "subtract", "multiply", "divide", "exponent"]
+    operations_list = ["1", "2", "3", "4", "5"]
     print(
         "Please enter the kind of calculation you wish to do." +
-        " Type add, subtract, multiply, divide, or exponent",
+        "\n1. Addition \n2. Subtraction \n3. Multiplication \n4. Division " +
+        "\n5. Exponential",
         end=". (No other input will be accepted)\n")
     mathematical_operation = input()
-    # This if statement checks for the presence of user input in the list of
-    # acceptable values
     if mathematical_operation not in operations_list:
         print("Sorry, I cannot do this operation. Please try again.")
         operation_decision()
     else:
-        if mathematical_operation == "add":
+        if mathematical_operation == "1":
             addition_function()
-        elif mathematical_operation == "subtract":
+        elif mathematical_operation == "2":
             subtraction_function()
-        elif mathematical_operation == "multiply":
+        elif mathematical_operation == "3":
             multipy_function()
-        elif mathematical_operation == "divide":
+        elif mathematical_operation == "4":
             division_choice = ""
-            while division_choice != "decimal" and division_choice != "fraction":
-                print("Do you wish to have a decimal answer? Type decimal.")
+            while division_choice != "1" and division_choice != "2":
+                print("Do you wish to have a decimal answer? Type 1.")
                 print(
                     "Do you wish to have a precise fraction answer? Type "
-                    "fraction.")
+                    "2.")
                 division_choice = input()
-            if division_choice == "fraction":
+            if division_choice == "1":
                 divide_function("fraction")
             else:
                 divide_function("decimal")
-        elif mathematical_operation == "exponent":
+        elif mathematical_operation == "5":
             exponent_function()
 
 
@@ -266,7 +260,6 @@ def main():
     print("Hello! " * 2, "Welcome to my calculator program!", sep="\n")
     print(
         "I can add, subtract, multiply, divide, and I can even do exponents!")
-    # Redirects to function operation_decision()
     operation_decision()
 
 
