@@ -1,5 +1,5 @@
 # Integration Project
-# Victor Morales Blanco
+__author__ = "Victor Morales Blanco"
 # This is a basic calculator to demonstrate my understanding of the Python language.
 # Sources https://www.w3schools.com/python/
 
@@ -94,23 +94,26 @@ def equation_prompt(operation_as_word):
     return list_of_numbers
 
 
-# This function subtracts the numbers from each other in the order they were put into the list
+# This function subtracts the numbers from each other in the order they were
+# put into the list
 def subtraction_function():
     """
 
     """
-    # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
+    # This line sends a parameter for the purpose of user interaction and
+    # returns a list of numbers.
     list_of_numbers = equation_prompt("subtract")
     # This line saves the first number in the list
     total = list_of_numbers[0]
     iteration_counter = 1
     # This loop subtracts the number stored in the list in the proper order
     while iteration_counter < len(list_of_numbers):
-        # This line is the same as saying: total = total - list_of_numbers[iteration_counter]
         total -= list_of_numbers[iteration_counter]
         iteration_counter += 1
-    # This line sends the list of numbers and the total to a function in order to create a string displaying
-    # the equation for the user. That function returns the equation as a string that is stored in answer.
+    # This line sends the list of numbers and the total to a function in order
+    # to create a string displaying
+    # the equation for the user. That function returns the equation as a string
+    # that is stored in answer.
     answer = answer_subtraction_prompt(list_of_numbers, total)
     print(answer)
     # This line sends the user back to the beginning, so they can do another calculation.
@@ -121,6 +124,8 @@ def subtraction_function():
 def addition_function():
     """
 
+
+    :return:
     """
     # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
     list_of_numbers = equation_prompt("add")
@@ -143,6 +148,7 @@ def addition_function():
 def multipy_function():
     """
 
+    :return:
     """
     # This line sends a parameter for the purpose of user interaction and returns a list of numbers.
     list_of_numbers = equation_prompt("multiply")
@@ -176,16 +182,17 @@ def divide_function(type_of_answer):
         displaced.
     """
     list_of_numbers = equation_prompt("divide")
-    # This line saves the first number in the list
     total = 1
-    # This line initializes answer so that it may be referenced outside the if statement.
+    # This line initializes answer so that it may be referenced outside the if
+    #  statement.
     for item in range(len(list_of_numbers)):
         total = total * list_of_numbers[item]
     denominator = total / list_of_numbers[0]
     total = list_of_numbers[0] / denominator
     remainder = list_of_numbers[0] % denominator
-    # This line sends the list of numbers and the total to a function in order to create a string displaying
-    # the equation for the user. That function returns the equation as a string that is stored in answer.
+    # This line sends the list of numbers and the total to a function in order
+    # to create a string displaying the equation for the user. That function
+    # returns the equation as a string that is stored in answer.
     answer = answer_division_prompt(list_of_numbers, total, remainder,
                                     denominator, type_of_answer)
     print(answer)
@@ -208,21 +215,24 @@ def exponent_function():
     print(str(base_number) + "^" + str(exponent) + " = " + str(total))
 
 
-# This function directs what functions get called depending on the user's inputs
 def operation_decision():
     """
-        This function serves determines which functions get called depending on user input.
+        This function serves determines which functions get called depending on
+        user input.
 
     :operations_list: This is a list of acceptable inputs.
     :mathematical_operation: This is the user's initial input.
-    :division_user_choice: This is a secondary input when the user selects division.
+    :division_choice: This is a secondary input when the user selects
+        division.
     """
     operations_list = ["add", "subtract", "multiply", "divide", "exponent"]
     print(
-        "Please enter the kind of calculation you wish to do." + " Type add, subtract, multiply, divide, or exponent",
+        "Please enter the kind of calculation you wish to do." +
+        " Type add, subtract, multiply, divide, or exponent",
         end=". (No other input will be accepted)\n")
     mathematical_operation = input()
-    # This if statement checks for the presence of user input in the list of acceptable values
+    # This if statement checks for the presence of user input in the list of
+    # acceptable values
     if mathematical_operation not in operations_list:
         print("Sorry, I cannot do this operation. Please try again.")
         operation_decision()
@@ -234,13 +244,14 @@ def operation_decision():
         elif mathematical_operation == "multiply":
             multipy_function()
         elif mathematical_operation == "divide":
-            division_user_choice = ""
-            while division_user_choice != "decimal" and division_user_choice != "fraction":
+            division_choice = ""
+            while division_choice != "decimal" and division_choice != "fraction":
                 print("Do you wish to have a decimal answer? Type decimal.")
                 print(
-                    "Do you wish to have a precise fraction answer? Type fraction.")
-                division_user_choice = input()
-            if division_user_choice == "fraction":
+                    "Do you wish to have a precise fraction answer? Type "
+                    "fraction.")
+                division_choice = input()
+            if division_choice == "fraction":
                 divide_function("fraction")
             else:
                 divide_function("decimal")
@@ -251,7 +262,6 @@ def operation_decision():
 def main():
     """
 
-    :rtype: object
     """
     print("Hello! " * 2, "Welcome to my calculator program!", sep="\n")
     print(
