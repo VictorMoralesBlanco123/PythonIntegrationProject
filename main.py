@@ -14,7 +14,7 @@ import math
 
 def main_equation_string_builder(list_of_numbers, total, sign):
     """
-        This function builds the associative property equation for visual purposes
+        This function builds the equations for visual purposes
 
 
     :param list_of_numbers: This contains all the numbers the user inputted.
@@ -35,28 +35,9 @@ def main_equation_string_builder(list_of_numbers, total, sign):
     return equation_string
 
 
-def answer_subtraction_prompt(list_of_numbers, total):
-    """
-        This function builds the subtraction equation for visual purposes
-
-    :param list_of_numbers: This contains all the numbers the user inputted.
-    :param total: This holds the calculated total as a decimal.
-    :return equation_string:  This holds the equation string to display to the
-            user.
-    """
-    equation_string = ""
-    i = 0
-    while i < len(list_of_numbers):
-        if i == len(list_of_numbers) - 1:
-            equation_string += str(list_of_numbers[i]) + " = " + str(total)
-        else:
-            equation_string += str(list_of_numbers[i]) + " - "
-        i += 1
-    return equation_string
-
-
-def answer_division_prompt(list_of_numbers, total, remainder, denominator,
-                           type_of_answer):
+def division_equation_string_builder(list_of_numbers, total, remainder,
+                                     denominator,
+                                     type_of_answer):
     """
         This function builds the division equation for visual purposes
 
@@ -168,7 +149,6 @@ def multipy_function():
 
     list_of_numbers = equation_prompt("multiply")
     total = 1
-    # This loop multiplies all the numbers in the list.
     for item in list_of_numbers:
         total = total * item
     answer = main_equation_string_builder(list_of_numbers, total, " * ")
@@ -193,15 +173,13 @@ def divide_function(type_of_answer):
     """
     list_of_numbers = equation_prompt("divide")
     total = 1
-    # This line initializes answer so that it may be referenced outside the if
-    #  statement.
     for item in range(len(list_of_numbers)):
         total *= list_of_numbers[item]
     denominator = total / list_of_numbers[0]
     total = list_of_numbers[0] / denominator
     remainder = list_of_numbers[0] % denominator
-    answer = answer_division_prompt(list_of_numbers, total, remainder,
-                                    denominator, type_of_answer)
+    answer = division_equation_string_builder(list_of_numbers, total,
+                                        remainder, denominator, type_of_answer)
     print(answer)
     operation_decision()
 
