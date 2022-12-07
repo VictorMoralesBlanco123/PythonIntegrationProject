@@ -77,20 +77,21 @@ def answer_division_prompt(list_of_numbers, total, remainder, denominator,
 # This function gets vital information for the computation
 def equation_prompt(operation_as_word):
     """
-
-    :param operation_as_word:
-    :return:
+        This function prompts the user for critical information to perform the
+        calculations.
+    :param operation_as_word: Holds the operation the user inputted previously
+        as a string for prompt.
+    :return list_of_numbers:
     """
     number_of_items = 0
-    # This loop serves as validation to make sure the user inputs a number greater than 1
     while number_of_items < 2:
         print(
-            "I'm going to need at least two numbers to be able to do any calculation.")
+            "I'm going to need at least two numbers to be able to do any "
+            "calculation.")
         number_of_items = int(float(input(
             "How many numbers do you wish to " + operation_as_word + "? ")))
     iteration_counter = 0
     list_of_numbers = []
-    # This loop allows the user to input the numbers and sends it into a list
     while iteration_counter < number_of_items:
         number = float(input(
             "Enter number" + " " + str(iteration_counter + 1) + " of " + str(
@@ -100,8 +101,6 @@ def equation_prompt(operation_as_word):
     return list_of_numbers
 
 
-# This function subtracts the numbers from each other in the order they were
-# put into the list
 def subtraction_function():
     """
          This function calculates a subtraction equation based on user inputs.
@@ -109,7 +108,7 @@ def subtraction_function():
      :list_of_numbers: This list holds the numbers the user input for
          multiplication.
      :total: This is the result of the calculation.
-     :iteration_counter:
+     :iteration_counter: Controls the loop.
      :answer: This holds the equation string to display.
      """
     list_of_numbers = equation_prompt("subtract")
