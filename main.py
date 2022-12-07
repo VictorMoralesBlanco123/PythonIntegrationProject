@@ -12,14 +12,17 @@ __author__ = "Victor Morales Blanco"
 import math
 
 
-def associative_equations_string(list_of_numbers, total, sign):
+def main_equation_string_builder(list_of_numbers, total, sign):
     """
-        This functions creates
+        This function builds the associative property equation for visual purposes
 
-    :param list_of_numbers:
-    :param total:
-    :param sign:
-    :return:
+
+    :param list_of_numbers: This contains all the numbers the user inputted.
+    :param total: This holds the calculated total as a decimal.
+    :param sign: This holds either the "+" or "*" operators for string
+        concatenation.
+    :return equation_string:  This holds the equation string to display to the
+            user.
     """
     equation_string = ""
     i = 0
@@ -32,8 +35,15 @@ def associative_equations_string(list_of_numbers, total, sign):
     return equation_string
 
 
-# This function builds the subtraction equation for visual purposes
 def answer_subtraction_prompt(list_of_numbers, total):
+    """
+        This function builds the subtraction equation for visual purposes
+
+    :param list_of_numbers: This contains all the numbers the user inputted.
+    :param total: This holds the calculated total as a decimal.
+    :return equation_string:  This holds the equation string to display to the
+            user.
+    """
     equation_string = ""
     i = 0
     while i < len(list_of_numbers):
@@ -45,27 +55,30 @@ def answer_subtraction_prompt(list_of_numbers, total):
     return equation_string
 
 
-# This function builds the division equation for visual purposes
 def answer_division_prompt(list_of_numbers, total, remainder, denominator,
                            type_of_answer):
     """
+        This function builds the division equation for visual purposes
 
-    :param list_of_numbers:
-    :param total:
-    :param remainder:
-    :param denominator:
-    :param type_of_answer:
-    :return:
+    :param list_of_numbers: This contains all the numbers the user inputted.
+    :param total: This holds the calculated total as a decimal.
+    :param remainder: This holds the remainder of the division.
+    :param denominator: This holds the value of the second item in the list of
+        numbers to the last value multiplied.
+    :param type_of_answer: This holds the decision the user made: whether they
+        want a fraction or decimal answer.
+    :return equation_string:  This holds the equation string to display to the
+            user.
     """
     equation_string = ""
     i = 0
     while i < len(list_of_numbers):
         if i == len(list_of_numbers) - 1:
             if type_of_answer == "fraction":
-                total_as_string = str(total).split(".")[0] + "  " + str(
+                mixed_fraction = str(total).split(".")[0] + "  " + str(
                     int(remainder)) + "/" + str(int(denominator))
                 equation_string += str(
-                    list_of_numbers[i]) + " = " + total_as_string
+                    list_of_numbers[i]) + " = " + mixed_fraction
             else:
                 equation_string += str(list_of_numbers[i]) + " = " + str(total)
         else:
@@ -74,14 +87,17 @@ def answer_division_prompt(list_of_numbers, total, remainder, denominator,
     return equation_string
 
 
-# This function gets vital information for the computation
 def equation_prompt(operation_as_word):
     """
         This function prompts the user for critical information to perform the
         calculations.
+
     :param operation_as_word: Holds the operation the user inputted previously
         as a string for prompt.
-    :return list_of_numbers:
+    :return list_of_numbers: This is the list of numbers that is sent back to
+        one of the equation functions for calculation.
+
+    :iteration_counter: Controls the loop.
     """
     number_of_items = 0
     while number_of_items < 2:
@@ -109,7 +125,7 @@ def subtraction_function():
          multiplication.
      :total: This is the result of the calculation.
      :iteration_counter: Controls the loop.
-     :answer: This holds the equation string to display.
+     :answer: This holds the equation string to display to the user.
      """
     list_of_numbers = equation_prompt("subtract")
     total = list_of_numbers[0]
@@ -117,12 +133,11 @@ def subtraction_function():
     while iteration_counter < len(list_of_numbers):
         total -= list_of_numbers[iteration_counter]
         iteration_counter += 1
-    answer = answer_subtraction_prompt(list_of_numbers, total)
+    answer = main_equation_string_builder(list_of_numbers, total, " - ")
     print(answer)
     operation_decision()
 
 
-# This function adds all the numbers in the list
 def addition_function():
     """
         This function calculates an addition equation based on user inputs.
@@ -130,13 +145,13 @@ def addition_function():
     :list_of_numbers: This list holds the numbers the user input for
         multiplication.
     :total: This is the result of the calculation.
-    :answer: This holds the equation string to display.
+    :answer:  This holds the equation string to display to the user.
     """
     list_of_numbers = equation_prompt("add")
     total = 0.0
     for item in list_of_numbers:
         total += item
-    answer = associative_equations_string(list_of_numbers, total, " - ")
+    answer = main_equation_string_builder(list_of_numbers, total, " - ")
     print(answer)
     operation_decision()
 
@@ -148,7 +163,7 @@ def multipy_function():
     :list_of_numbers: This list holds the numbers the user input for
         multiplication.
     :total: This is the result of the calculation.
-    :answer: This holds the equation string to display.
+    :answer:  This holds the equation string to display to the user.
     """
 
     list_of_numbers = equation_prompt("multiply")
@@ -156,7 +171,7 @@ def multipy_function():
     # This loop multiplies all the numbers in the list.
     for item in list_of_numbers:
         total = total * item
-    answer = associative_equations_string(list_of_numbers, total, " * ")
+    answer = main_equation_string_builder(list_of_numbers, total, " * ")
     print(answer)
     operation_decision()
 
@@ -173,17 +188,15 @@ def divide_function(type_of_answer):
     :denominator: This stores the denominator calculated by multiplying all the
         numbers the user input except the first.
     :remainder: This stores the remainder using the modulus operator.
-    :answer: This is a string that has the entire equation so that it can be
-        displaced.
-    :line 198: This line sends the list of numbers and the total to a function
-        in order to create a string displaying the equation for the user.
+    :answer:  This holds the equation string to display to the user.
+
     """
     list_of_numbers = equation_prompt("divide")
     total = 1
     # This line initializes answer so that it may be referenced outside the if
     #  statement.
     for item in range(len(list_of_numbers)):
-        total = total * list_of_numbers[item]
+        total *= list_of_numbers[item]
     denominator = total / list_of_numbers[0]
     total = list_of_numbers[0] / denominator
     remainder = list_of_numbers[0] % denominator
@@ -254,7 +267,7 @@ def operation_decision():
 
 def main():
     """
-
+        This is the main function that controls the program.
     """
     print("Hello! " * 2, "Welcome to my calculator program!", sep="\n")
     print(
