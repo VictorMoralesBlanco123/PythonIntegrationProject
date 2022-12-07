@@ -82,19 +82,28 @@ def equation_prompt(operation_as_word):
     """
     number_of_items = 0
     while number_of_items < 2:
-        print(
-            "I'm going to need at least two numbers to be able to do any "
-            "calculation.")
-        number_of_items = int(float(input(
-            "How many numbers do you wish to " + operation_as_word + "? ")))
+        try:
+            print(
+                "I'm going to need at least two numbers to be able to do any "
+                "calculation.")
+            number_of_items = int(float(input(
+                "How many numbers do you wish to " + operation_as_word + "? "
+            ).replace(' ', '')))
+        except ValueError:
+            print("Invalid input. Please type a number")
     iteration_counter = 0
     list_of_numbers = []
     while iteration_counter < number_of_items:
-        number = float(input(
-            "Enter number" + " " + str(iteration_counter + 1) + " of " + str(
-                number_of_items) + " : "))
-        list_of_numbers.append(number)
-        iteration_counter += 1
+        try:
+            number = float(input(
+                "Enter number" + " " + str(
+                    iteration_counter + 1) + " of " + str(
+                    number_of_items) + " : ").replace(' ', ''))
+            list_of_numbers.append(number)
+            iteration_counter += 1
+        except ValueError:
+            print("Numbers and decimals only, please.")
+
     return list_of_numbers
 
 
@@ -193,12 +202,27 @@ def exponent_function():
     :exponent: This is the exponent the user inputs.
     :total: This stores the total after the equation has been calculated.
     """
-    print("Please enter the base number:")
-    base_number = float(input())
-    print("Please enter the exponent:")
-    exponent = float(input())
+    continue_loop = True
+    continue_loop_2 = True
+    base_number = 0
+    exponent = 0
+    while continue_loop:
+        try:
+            print("Please enter the base number:")
+            base_number = float(input().replace(' ', ''))
+            continue_loop = False
+        except ValueError:
+            print("Please enter a number.")
+    while continue_loop_2:
+        try:
+            print("Please enter the exponent:")
+            exponent = float(input().replace(' ', ''))
+            continue_loop_2 = False
+        except ValueError:
+            print("Please enter a number.")
     total = math.pow(base_number, exponent)
     print(str(base_number) + "^" + str(exponent) + " = " + str(total))
+    operation_decision()
 
 
 def operation_decision():
@@ -215,9 +239,9 @@ def operation_decision():
     print(
         "Please enter the kind of calculation you wish to do." +
         "\n1. Addition \n2. Subtraction \n3. Multiplication \n4. Division " +
-        "\n5. Exponential",
-        end=". (No other input will be accepted)\n")
-    mathematical_operation = input()
+        "\n5. Exponential \n",
+        end="(No other input will be accepted)\n")
+    mathematical_operation = input().replace(' ', '')
     if mathematical_operation not in operations_list:
         print("Sorry, I cannot do this operation. Please try again.")
         operation_decision()
@@ -231,15 +255,19 @@ def operation_decision():
         elif mathematical_operation == "4":
             division_choice = ""
             while division_choice != "1" and division_choice != "2":
-                print("Do you wish to have a decimal answer? Type 1.")
-                print(
-                    "Do you wish to have a precise fraction answer? Type "
-                    "2.")
-                division_choice = input()
-            if division_choice == "1":
-                divide_function("fraction")
-            else:
-                divide_function("decimal")
+                continue_loop = True
+                while continue_loop:
+                    print("Do you wish to have a decimal answer? Type 1.")
+                    print(
+                        "Do you wish to have a precise fraction answer? Type "
+                        "2.")
+                    division_choice = input().replace(' ', '')
+                    if division_choice == "2":
+                        divide_function("fraction")
+                        continue_loop = False
+                    elif division_choice == "1":
+                        divide_function("decimal")
+                        continue_loop = False
         elif mathematical_operation == "5":
             exponent_function()
 
@@ -254,5 +282,5 @@ def main():
     operation_decision()
 
 
-# This line calls the startup() function
-main()
+if __name__ == "__main__":
+    main()
