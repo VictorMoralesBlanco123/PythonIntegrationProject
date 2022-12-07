@@ -14,8 +14,8 @@ import math
 
 def main_equation_string_builder(list_of_numbers, total, sign):
     """
-        This function builds the equations for visual purposes
-
+        This function builds the addition, subtraction, and multiplication
+        equations strings for visual purposes.
 
     :param list_of_numbers: This contains all the numbers the user inputted.
     :param total: This holds the calculated total as a decimal.
@@ -39,7 +39,7 @@ def division_equation_string_builder(list_of_numbers, total, remainder,
                                      denominator,
                                      type_of_answer):
     """
-        This function builds the division equation for visual purposes
+        This function builds the division equation string for visual purposes.
 
     :param list_of_numbers: This contains all the numbers the user inputted.
     :param total: This holds the calculated total as a decimal.
@@ -150,7 +150,7 @@ def multipy_function():
     list_of_numbers = equation_prompt("multiply")
     total = 1
     for item in list_of_numbers:
-        total = total * item
+        total *= item
     answer = main_equation_string_builder(list_of_numbers, total, " * ")
     print(answer)
     operation_decision()
@@ -179,7 +179,8 @@ def divide_function(type_of_answer):
     total = list_of_numbers[0] / denominator
     remainder = list_of_numbers[0] % denominator
     answer = division_equation_string_builder(list_of_numbers, total,
-                                        remainder, denominator, type_of_answer)
+                                              remainder, denominator,
+                                              type_of_answer)
     print(answer)
     operation_decision()
 
